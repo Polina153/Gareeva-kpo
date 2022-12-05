@@ -50,9 +50,9 @@ class Board {
         for (Cell sl : tilesToFlip.get(i)) {
             board[sl.getX()][sl.getY()] = player;
         }
-        Cell rememberLastMove = new Cell(posX,posY);
+        /*Cell rememberLastMove = new Cell(posX,posY);
         rememberLastMove.setPreviousX(rememberLastMove.getX());
-        rememberLastMove.setPreviousY(rememberLastMove.getY());
+        rememberLastMove.setPreviousY(rememberLastMove.getY());*/
     }
     public void showBoard() {
         System.out.println("       1    2    3    4    5    6    7    8");

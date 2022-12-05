@@ -9,24 +9,31 @@ class Score {
     private static int bestPlayerScore = 0;
     private static int bestPlayer2Score = 0;
 
-    public static void showScores() {
-        calculateScore();
-        System.out.println("\nYour scores: " + amountOfPlayerScores
-                + "\nComputer scores: " + Score.getAmountOfComputerScores());
+    public static void showScores(int typeOfGame) {
+        //calculateScore();
+        switch (typeOfGame) {
+            case 1:
+                System.out.println("\nYour scores: " + amountOfPlayerScores
+                        + "\nComputer scores: " + amountOfComputerScores);
+                break;
+            case 2:
+                System.out.println("\nPlayer 'x' scores: " + currentPlayerScore
+                        + "\nPlayer 'o' scores: " + currentPlayer2Score);
+        }
     }
 
     public static void showResultScores(int typeOfGame) {
-        calculateScore();
+        //calculateScore();
         calculateBestScore();
         switch (typeOfGame) {
             case 1:
-                if (amountOfPlayerScores > Score.getAmountOfComputerScores()) {
+                if (amountOfPlayerScores > amountOfComputerScores) {
                     System.out.printf("Congratulations! You beat the computer by %d scores",
-                            amountOfPlayerScores - Score.getAmountOfComputerScores());
+                            amountOfPlayerScores - amountOfComputerScores);
                     System.out.print("\n\n\n");
-                } else if (amountOfPlayerScores < Score.getAmountOfComputerScores()) {
+                } else if (amountOfPlayerScores < amountOfComputerScores) {
                     System.out.printf("Oops, sorry... computer beat you by %d scores",
-                            Score.getAmountOfComputerScores() - amountOfPlayerScores);
+                            amountOfComputerScores - amountOfPlayerScores);
                     System.out.print("\n\n\n");
                 } else {
                     System.out.println("Wow! Dead head!");
@@ -51,8 +58,8 @@ class Score {
     }
 
     private static void calculateBestScore() {
-        if (amountOfPlayerScores > Score.getBestPlayerScore()) {
-            Score.setBestPlayerScore(amountOfPlayerScores);
+        if (amountOfPlayerScores > bestPlayerScore) {
+            bestPlayerScore = amountOfPlayerScores;
         }
         if (currentPlayer2Score > bestPlayer2Score) {
             bestPlayer2Score = currentPlayer2Score;
@@ -64,45 +71,5 @@ class Score {
         System.out.println();
         System.out.printf("Player o has the best score %d in this session", bestPlayer2Score);
         System.out.println();
-    }
-
-    public static int getAmountOfComputerScores() {
-        return amountOfComputerScores;
-    }
-
-    public static void setAmountOfComputerScores(int amountOfComputerScores) {
-        Score.amountOfComputerScores = amountOfComputerScores;
-    }
-
-    public static int getBestPlayerScore() {
-        return bestPlayerScore;
-    }
-
-    public static void setBestPlayerScore(int bestPlayerScore) {
-        Score.bestPlayerScore = bestPlayerScore;
-    }
-
-    public static int getBestPlayer2Score() {
-        return bestPlayer2Score;
-    }
-
-    public static void setBestPlayer2Score(int bestPlayer2Score) {
-        Score.bestPlayer2Score = bestPlayer2Score;
-    }
-
-    public static int getAmountOfPlayerScores() {
-        return amountOfPlayerScores;
-    }
-
-    public static void setAmountOfPlayerScores(int amountOfPlayerScores) {
-        Score.amountOfPlayerScores = amountOfPlayerScores;
-    }
-
-    public static int getCurrentPlayerScore() {
-        return currentPlayerScore;
-    }
-
-    public static int getCurrentPlayer2Score() {
-        return currentPlayer2Score;
     }
 }

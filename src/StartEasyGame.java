@@ -9,7 +9,7 @@ class StartEasyGame extends NewGame {
     public void game() {
         while (flag) {
             makeMoves();
-            Score.showScores();
+            Score.showScores(1);
         }
         Score.showResultScores(1);
     }
@@ -34,7 +34,6 @@ class StartEasyGame extends NewGame {
             if (!playerMadeAMove) {
                 flag = false;
                 return;
-            } else {
             }
         }
         board.calculatePossibleMoves(1, 2);

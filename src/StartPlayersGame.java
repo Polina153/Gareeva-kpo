@@ -11,7 +11,7 @@ class StartPlayersGame extends NewGame {
     public void game() {
         while (flag) {
             makeMoves();
-            showScores();
+            Score.showScores(2);
         }
         Score.showResultScores(2);
     }
@@ -51,11 +51,5 @@ class StartPlayersGame extends NewGame {
     public void calculateScore() {
         Score.currentPlayerScore = board.calculateTiles(1);
         Score.currentPlayer2Score = board.calculateTiles(2);
-    }
-
-    public void showScores() {
-        calculateScore();
-        System.out.println("\nPlayer 'x' scores: " + Score.getCurrentPlayerScore()
-                + "\nPlayer 'o' scores: " + Score.getCurrentPlayer2Score());
     }
 }
