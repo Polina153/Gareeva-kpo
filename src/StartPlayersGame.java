@@ -1,4 +1,4 @@
-public class StartPlayersGame extends NewGame {
+class StartPlayersGame extends NewGame {
     boolean ifPlayer1CanMove;
     boolean ifPlayer2CanMove;
 

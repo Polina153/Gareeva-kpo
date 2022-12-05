@@ -1,16 +1,13 @@
-public class Score {
+class Score {
     private static int amountOfComputerScores = 0;
     private static int amountOfPlayerScores = 0;
 
     static int currentPlayerScore = 0;
     static int currentPlayer2Score = 0;
+
+    static int currentComputerScore = 0;
     private static int bestPlayerScore = 0;
     private static int bestPlayer2Score = 0;
-
-    public static void calculateScore() {
-        amountOfPlayerScores = board.calculateTiles(1);
-        amountOfComputerScores = board.calculateTiles(2);
-    }
 
     public static void showScores() {
         calculateScore();

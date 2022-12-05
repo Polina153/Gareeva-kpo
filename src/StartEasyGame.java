@@ -1,4 +1,4 @@
-public class StartEasyGame extends NewGame {
+class StartEasyGame extends NewGame {
     private boolean playerMadeAMove;
 
     StartEasyGame() {
@@ -47,6 +47,10 @@ public class StartEasyGame extends NewGame {
         int bestScore = 0;
         board.makeComputerMove();
         board.renewBoardAfterCompMove();
+    }
+    public void calculateScore() {
+        Score.currentPlayerScore = board.calculateTiles(1);
+        Score.currentComputerScore = board.calculateTiles(2);
     }
 }
 

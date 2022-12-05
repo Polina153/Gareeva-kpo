@@ -1,4 +1,4 @@
-public class Cell {
+class Cell {
     private int x;
     private int y;
 

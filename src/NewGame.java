@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
-public abstract class NewGame {
-    protected Board board;
+abstract class NewGame {
+    Board board;
     protected boolean flag;
     protected int amountOfPlayerScores;
 

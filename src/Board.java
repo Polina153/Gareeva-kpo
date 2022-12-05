@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Board {
+class Board {
     private int [][] board;
     private final List<Cell> possibleMoves;
     private final List<List<Cell>> tilesToFlip;
@@ -22,7 +22,7 @@ public class Board {
         arr = new ArrayList<>();
         arr.add(new Cell(4,4));
         tilesToFlip.add(arr);
-        arr = new ArrayList<>();
+        //arr = new ArrayList<>();
         possibleMoves = new ArrayList<>();
         possibleMoves.add(new Cell(2,3));
         possibleMoves.add(new Cell(3,2));
