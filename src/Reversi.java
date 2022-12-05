@@ -19,25 +19,20 @@ public class Reversi {
             command = scanner.nextLine();
 
             switch (command) {
-
                 case "1":
                     StartEasyGame easyLevel = new StartEasyGame();
                     easyLevel.game();
                     break;
-
                 case "2":
                     System.out.println("Sorry, no medium level");
                     break;
-
                 case "3":
                     StartPlayersGame playersLevel = new StartPlayersGame();
                     playersLevel.game();
                     break;
-
                 case "4":
-
+                    ScoreCounter.showBestScore();
                     break;
-
                 default:
                     System.out.println("Command not recognized! Please try again");
             }

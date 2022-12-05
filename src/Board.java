@@ -2,7 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 class Board {
-    private int [][] board;
+
+    private int[][] board;
     private final List<Cell> possibleMoves;
     private final List<List<Cell>> tilesToFlip;
     public boolean flag;
@@ -11,25 +12,26 @@ class Board {
         newBoard();
         tilesToFlip = new ArrayList<>();
         ArrayList<Cell> arr = new ArrayList<>();
-        arr.add(new Cell(3,3));
+        arr.add(new Cell(3, 3));
         tilesToFlip.add(arr);
         arr = new ArrayList<>();
-        arr.add(new Cell(3,3));
+        arr.add(new Cell(3, 3));
         tilesToFlip.add(arr);
         arr = new ArrayList<>();
-        arr.add(new Cell(4,4));
+        arr.add(new Cell(4, 4));
         tilesToFlip.add(arr);
         arr = new ArrayList<>();
-        arr.add(new Cell(4,4));
+        arr.add(new Cell(4, 4));
         tilesToFlip.add(arr);
         //arr = new ArrayList<>();
         possibleMoves = new ArrayList<>();
-        possibleMoves.add(new Cell(2,3));
-        possibleMoves.add(new Cell(3,2));
-        possibleMoves.add(new Cell(4,5));
-        possibleMoves.add(new Cell(5,4));
+        possibleMoves.add(new Cell(2, 3));
+        possibleMoves.add(new Cell(3, 2));
+        possibleMoves.add(new Cell(4, 5));
+        possibleMoves.add(new Cell(5, 4));
         flag = true;
     }
+
     private void newBoard() {
         board = new int[8][8];
         board[3][3] = 2;
@@ -41,6 +43,7 @@ class Board {
         board[4][5] = 3;
         board[5][4] = 3;
     }
+
     public void makeMove(int posX, int posY, int player) {
         board[posX][posY] = player;
         int i = 0;
@@ -50,10 +53,8 @@ class Board {
         for (Cell sl : tilesToFlip.get(i)) {
             board[sl.getX()][sl.getY()] = player;
         }
-        /*Cell rememberLastMove = new Cell(posX,posY);
-        rememberLastMove.setPreviousX(rememberLastMove.getX());
-        rememberLastMove.setPreviousY(rememberLastMove.getY());*/
     }
+
     public void showBoard() {
         System.out.println("       1    2    3    4    5    6    7    8");
         for (int i = 0; i < 8; i++) {
@@ -71,7 +72,12 @@ class Board {
             }
             System.out.print("\n");
         }
+
+        ScoreCounter.currentPlayer1Score = calculateTiles(1);
+        ScoreCounter.currentPlayer2Score = calculateTiles(2);
+        ScoreCounter.showScores();
     }
+
     public void renewBoardAfterCompMove() {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
@@ -83,6 +89,7 @@ class Board {
         tilesToFlip.clear();
         possibleMoves.clear();
     }
+
     public void renewBoardAfterPlayer1Move() {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
@@ -109,13 +116,14 @@ class Board {
             flag = true;
         }
     }
+
     public boolean isValidMove(int player1, int player2, int row, int column) {
         ArrayList<Cell> tmp = new ArrayList<>();
         if (board[row][column] != 0 || !posExists(row, column)) {
             return false;
         }
         board[row][column] = player1;
-        int[][] directions = { {0, 1}, {1, 1}, {1, 0}, {1, -1}, {0, -1}, {-1, -1}, {-1, 0}, {-1, 1} };
+        int[][] directions = {{0, 1}, {1, 1}, {1, 0}, {1, -1}, {0, -1}, {-1, -1}, {-1, 0}, {-1, 1}};
         int x, y;
         for (int i = 0; i < directions.length; i++) {
             x = row + directions[i][0];
@@ -151,14 +159,17 @@ class Board {
         tilesToFlip.add(tmp);
         return true;
     }
+
     private boolean posExists(int x, int y) {
         return (x >= 0 && x < 8 && y >= 0 && y < 8);
     }
+
     public void fillPossibleMoves() {
         for (Cell sl : possibleMoves) {
             board[sl.getX()][sl.getY()] = 3;
         }
     }
+
     public boolean correctPos(int x, int y) {
         if (!posExists(x, y) || board[x][y] != 3) {
             return false;
@@ -166,6 +177,7 @@ class Board {
             return true;
         }
     }
+
     public int calculateTiles(int player) {
         int counter = 0;
         for (int i = 0; i < 8; i++) {
@@ -177,6 +189,7 @@ class Board {
         }
         return counter;
     }
+
     private boolean isOnEdge(int x, int y) {
         if (x == 0 || y == 0 || x == 8 || y == 8) {
             return true;
@@ -184,6 +197,7 @@ class Board {
             return false;
         }
     }
+
     public void makeComputerMove() {
         int bestId = calculateBestMove();
         board[possibleMoves.get(bestId).getX()][possibleMoves.get(bestId).getY()] = 2;
@@ -191,6 +205,7 @@ class Board {
             board[sl.getX()][sl.getY()] = 2;
         }
     }
+
     public int calculateBestMove() {
         int bestScore = 0;
         int bestId = 0;

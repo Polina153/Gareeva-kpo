@@ -1,5 +1,8 @@
+
 class StartEasyGame extends NewGame {
+
     private boolean playerMadeAMove;
+    private static final int EASY_GAME = 1;
 
     StartEasyGame() {
         super();
@@ -9,9 +12,9 @@ class StartEasyGame extends NewGame {
     public void game() {
         while (flag) {
             makeMoves();
-            Score.showScores(1);
         }
-        Score.showResultScores(1);
+
+        ScoreCounter.showResultScores();
     }
 
     public void makeMoves() {
@@ -41,15 +44,12 @@ class StartEasyGame extends NewGame {
     }
 
     public void computerMoves() {
-        boolean current_flag = true;
-        int x, y;
-        int bestScore = 0;
         board.makeComputerMove();
         board.renewBoardAfterCompMove();
     }
+
     public void calculateScore() {
-        Score.currentPlayerScore = board.calculateTiles(1);
-        Score.currentComputerScore = board.calculateTiles(2);
+        ScoreCounter.currentPlayer1Score = board.calculateTiles(1);
     }
 }
 
