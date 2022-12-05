@@ -16,7 +16,6 @@ abstract class NewGame {
     protected void playerMoves(int playerType) {
         int x = 0, y = 0;
         boolean currentFlag = true;
-        boolean isReturnToLastPlayerMove = false;
         Scanner input = new Scanner(System.in);
         do {
             try {
@@ -25,7 +24,6 @@ abstract class NewGame {
                 } else {
                     System.out.println("Player 'o' please enter a move");
                 }
-                System.out.println("If you want to cancel last move - enter 0 ");
                 System.out.println("Enter a row : ");
                 x = input.nextInt();
                 System.out.println("Enter a column : ");
@@ -40,9 +38,7 @@ abstract class NewGame {
                 System.out.println("Wrong coordinates, try again");
             }
         } while (!currentFlag);
-        if (!isReturnToLastPlayerMove) {
-            board.makeMove(x - 1, y - 1, playerType);
-        }
+        board.makeMove(x - 1, y - 1, playerType);
         board.renewBoardAfterPlayer1Move();
         board.showBoard();
     }

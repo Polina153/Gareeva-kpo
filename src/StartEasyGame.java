@@ -9,7 +9,7 @@ class StartEasyGame extends NewGame {
         playerMadeAMove = true;
     }
 
-    public void game() {
+    void game() {
         while (flag) {
             makeMoves();
         }
@@ -43,13 +43,9 @@ class StartEasyGame extends NewGame {
         board.fillPossibleMoves();
     }
 
-    public void computerMoves() {
+    void computerMoves() {
         board.makeComputerMove();
         board.renewBoardAfterCompMove();
-    }
-
-    public void calculateScore() {
-        ScoreCounter.currentPlayer1Score = board.calculateTiles(1);
     }
 }
 

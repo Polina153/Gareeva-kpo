@@ -8,12 +8,11 @@ class StartPlayersGame extends NewGame {
         ifPlayer2CanMove = true;
     }
 
-    public void game() {
+    void game() {
         while (flag) {
             makeMoves();
-            //ScoreCounter.showScores(2);
         }
-        //ScoreCounter.showResultScores(2);
+        ScoreCounter.showResultScores();
     }
 
     public void makeMoves() {
@@ -46,10 +45,5 @@ class StartPlayersGame extends NewGame {
         }
         board.calculatePossibleMoves(1, 2);
         board.fillPossibleMoves();
-    }
-
-    public void calculateScore() {
-        ScoreCounter.currentPlayer1Score = board.calculateTiles(1);
-        ScoreCounter.currentPlayer2Score = board.calculateTiles(2);
     }
 }

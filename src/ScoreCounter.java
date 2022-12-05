@@ -3,16 +3,14 @@ class ScoreCounter {
 
     static int currentPlayer1Score = 0;
     static int currentPlayer2Score = 0;
-
     private static int bestPlayerScore = 0;
 
-    public static void showScores() {
-
+    static void showScores() {
         System.out.println("Player 'x' scores: " + currentPlayer1Score
                 + "\nPlayer 'o' scores: " + currentPlayer2Score + "\n");
     }
 
-    public static void showResultScores() {
+    static void showResultScores() {
         saveBestScoreOfPlayer1();
         if (currentPlayer1Score > currentPlayer2Score) {
             System.out.printf("Player 'x' won by %d scores!", currentPlayer1Score - currentPlayer2Score);
