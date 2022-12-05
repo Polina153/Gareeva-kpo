@@ -1,6 +1,8 @@
-public class StartPlayersGame extends NewGame{
+public class StartPlayersGame extends NewGame {
     private int currentPlayerScore;
     private int currentPlayer2Score;
+    private int bestPlayerScore = 0;
+    private int bestPlayer2Score =0;
     boolean ifPlayer1CanMove;
     boolean ifPlayer2CanMove;
 
@@ -10,6 +12,7 @@ public class StartPlayersGame extends NewGame{
         ifPlayer1CanMove = true;
         ifPlayer2CanMove = true;
     }
+
     public void game() {
         while (flag) {
             makeMoves();
@@ -17,6 +20,7 @@ public class StartPlayersGame extends NewGame{
         }
         showResultScores();
     }
+
     public void makeMoves() {
         if (board.flag) {
             board.showBoard();
@@ -53,18 +57,43 @@ public class StartPlayersGame extends NewGame{
         currentPlayerScore = board.calculateTiles(1);
         currentPlayer2Score = board.calculateTiles(2);
     }
+
     public void showScores() {
+        calculateScore();
         System.out.println("\nPlayer 'x' scores: " + currentPlayerScore
                 + "\nPlayer 'o' scores: " + currentPlayer2Score);
     }
+
     public void showResultScores() {
         calculateScore();
+        calculateBestScore();
         if (currentPlayerScore > currentPlayer2Score) {
             System.out.printf("Player 'x' won by %d scores!", currentPlayerScore - currentPlayer2Score);
+            calculateBestScore();
+            System.out.print("\n\n\n");
         } else if (currentPlayerScore < currentPlayer2Score) {
             System.out.printf("Player 'o' won by %d scores!", currentPlayer2Score - currentPlayerScore);
+            calculateBestScore();
+            System.out.print("\n\n\n");
         } else {
             System.out.println("Wow! Dead head!");
+            calculateBestScore();
+            System.out.print("\n\n\n");
         }
+    }
+
+    private void calculateBestScore() {
+        if (currentPlayerScore > bestPlayerScore) {
+            bestPlayerScore = currentPlayerScore;
+        }
+        if (currentPlayer2Score > bestPlayer2Score) {
+            bestPlayer2Score = currentPlayer2Score;
+        }
+    }
+    protected void showBestScore(){
+        System.out.printf("Player x has the best score %d in this session", bestPlayerScore);
+        System.out.println();
+        System.out.printf("Player o has the best score %d in this session", bestPlayer2Score);
+        System.out.println();
     }
 }

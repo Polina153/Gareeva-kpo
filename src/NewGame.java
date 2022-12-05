@@ -10,6 +10,7 @@ public abstract class NewGame {
     }
     protected abstract void makeMoves();
     protected abstract void showScores();
+    protected abstract void showBestScore();
     protected void playerMoves(int player) {
         int x = 0, y = 0;
         boolean current_flag = true;
@@ -21,8 +22,12 @@ public abstract class NewGame {
                 } else {
                     System.out.println("Player 'o' please enter a move");
                 }
+                //System.out.println("If you want to cancel last move - enter 0 ");
                 System.out.println("Enter a row : ");
                 x = input.nextInt();
+               /* if(x == 0){
+                    board.unMakeMove(player);
+                }*/
                 System.out.println("Enter a column : ");
                 y = input.nextInt();
                 if (!board.correctPos(x - 1, y - 1)) {
@@ -36,6 +41,7 @@ public abstract class NewGame {
             }
         } while (!current_flag);
         board.makeMove(x - 1, y - 1, player);
+        board.renewBoardAfterPlayer1Move();
         board.showBoard();
     }
 }

@@ -49,6 +49,9 @@ public class Board {
         for (Cell sl : tilesToFlip.get(i)) {
             board[sl.getX()][sl.getY()] = player;
         }
+        Cell rememberLastMove = new Cell(posX,posY);
+        rememberLastMove.setPreviousX(rememberLastMove.getX());
+        rememberLastMove.setPreviousY(rememberLastMove.getY());
     }
     public void showBoard() {
         System.out.println("       1    2    3    4    5    6    7    8");
@@ -68,7 +71,7 @@ public class Board {
             System.out.print("\n");
         }
     }
-    public void reNewBoard() {
+    public void renewBoardAfterCompMove() {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 if (board[i][j] == 3) {
@@ -79,6 +82,18 @@ public class Board {
         tilesToFlip.clear();
         possibleMoves.clear();
     }
+    public void renewBoardAfterPlayer1Move() {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if (board[i][j] == 3) {
+                    board[i][j] = 0;
+                }
+            }
+        }
+        tilesToFlip.clear();
+        possibleMoves.clear();
+    }
+
     public void calculatePossibleMoves(int player1, int player2) {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
