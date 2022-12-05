@@ -1,20 +1,22 @@
 import java.util.Scanner;
+
 public abstract class NewGame {
     protected Board board;
     protected boolean flag;
     protected int amountOfPlayerScores;
-    NewGame () {
+
+    NewGame() {
         board = new Board();
         amountOfPlayerScores = 0;
         flag = true;
     }
+
     protected abstract void makeMoves();
-    protected abstract void showScores();
-    protected abstract void showBestScore();
+
     protected void playerMoves(int player) {
         int x = 0, y = 0;
         boolean current_flag = true;
-        Scanner input = new Scanner( System.in );
+        Scanner input = new Scanner(System.in);
         do {
             try {
                 if (player == 1) {

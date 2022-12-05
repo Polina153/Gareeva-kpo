@@ -6,6 +6,7 @@ public class Board {
     private final List<Cell> possibleMoves;
     private final List<List<Cell>> tilesToFlip;
     public boolean flag;
+
     Board() {
         newBoard();
         tilesToFlip = new ArrayList<>();
