@@ -1,5 +1,5 @@
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Board {
     private int [][] board;
@@ -43,11 +43,11 @@ public class Board {
     public void makeMove(int posX, int posY, int player) {
         board[posX][posY] = player;
         int i = 0;
-        while (possibleMoves.get(i).x != posX || possibleMoves.get(i).y != posY) {
+        while (possibleMoves.get(i).getX() != posX || possibleMoves.get(i).getY() != posY) {
             i++;
         }
         for (Cell sl : tilesToFlip.get(i)) {
-            board[sl.x][sl.y] = player;
+            board[sl.getX()][sl.getY()] = player;
         }
     }
     public void showBoard() {
@@ -140,7 +140,7 @@ public class Board {
     }
     public void fillPossibleMoves() {
         for (Cell sl : possibleMoves) {
-            board[sl.x][sl.y] = 3;
+            board[sl.getX()][sl.getY()] = 3;
         }
     }
     public boolean correctPos(int x, int y) {
@@ -170,9 +170,9 @@ public class Board {
     }
     public void makeComputerMove() {
         int bestId = calculateBestMove();
-        board[possibleMoves.get(bestId).x][possibleMoves.get(bestId).y] = 2;
+        board[possibleMoves.get(bestId).getX()][possibleMoves.get(bestId).getY()] = 2;
         for (Cell sl : tilesToFlip.get(bestId)) {
-            board[sl.x][sl.y] = 2;
+            board[sl.getX()][sl.getY()] = 2;
         }
     }
     public int calculateBestMove() {
@@ -181,15 +181,15 @@ public class Board {
         for (int i = 0; i < possibleMoves.size(); i++) {
             int currentScore = 0;
             for (int j = 0; j < tilesToFlip.get(i).size(); j++) {
-                if (isOnEdge(tilesToFlip.get(i).get(j).x, tilesToFlip.get(i).get(j).y)) {
+                if (isOnEdge(tilesToFlip.get(i).get(j).getX(), tilesToFlip.get(i).get(j).getY())) {
                     currentScore += 2;
                 } else {
                     currentScore += 1;
                 }
             }
             if (tilesToFlip.get(i).size() == 1) {
-                if (tilesToFlip.get(i).get(0).x == possibleMoves.get(i).x ||
-                        tilesToFlip.get(i).get(0).y == possibleMoves.get(i).y) {
+                if (tilesToFlip.get(i).get(0).getX() == possibleMoves.get(i).getX() ||
+                        tilesToFlip.get(i).get(0).getY() == possibleMoves.get(i).getY()) {
                     currentScore += 0.4;
                 } else {
                     currentScore += 0.8;
